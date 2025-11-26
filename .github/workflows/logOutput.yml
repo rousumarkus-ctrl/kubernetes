@@ -18,7 +18,7 @@ jobs:
       - name: Prepare
         id: prep
         run: |
-          DOCKER_IMAGE=mrousu/logOutput
+          DOCKER_IMAGE=mrousu/logoutput
           # Set the platforms to build for here and thus reduce duplicating it.
           PLATFORMS=amd64,arm,arm64
           TAGS="${DOCKER_IMAGE}:${{ github.sha }}"
