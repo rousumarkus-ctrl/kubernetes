@@ -14,4 +14,4 @@ spec:
     spec:
       containers:
         - name: pingpong
-          image: mrousu/logoutput:af419e4651cff80b2eaee5b4bbafd78152d0c2b3
+          image: mrousu/pingpong:c85cc39a1a1d0bb1f48d21af326ba5707ef69aea

@@ -2,7 +2,7 @@ import express from 'express';
 
 const app = express();
 
-app.get('/', async (request, response) => {
+app.get('/pingpong', async (request, response) => {
   response.send(getPings());
   pings++;
 });
