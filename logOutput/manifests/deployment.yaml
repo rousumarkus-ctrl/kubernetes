@@ -14,4 +14,4 @@ spec:
     spec:
       containers:
         - name: hashgenerator
-          image: mrousu/logoutput:1831dbe24645a303263de9f7aa6a50d4e2d54cc6
+          image: mrousu/logoutput:af419e4651cff80b2eaee5b4bbafd78152d0c2b3
