@@ -1,12 +1,12 @@
-name: Release logoutput
+name: Release logsaver
 
 on:
   push:
     branches:
       - master
     paths:
-      - 'log/logoutput/**'
-      - '.github/workflows/logoutput.yml'
+      - 'log/logsaver/**'
+      - '.github/workflows/logsaver.yml'
 
 jobs:
   build:
@@ -18,7 +18,7 @@ jobs:
       - name: Prepare
         id: prep
         run: |
-          DOCKER_IMAGE=mrousu/logoutput
+          DOCKER_IMAGE=mrousu/logsaver
           # Set the platforms to build for here and thus reduce duplicating it.
           PLATFORMS=amd64,arm,arm64
           TAGS="${DOCKER_IMAGE}:${{ github.sha }}"
@@ -58,7 +58,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           builder: ${{ steps.buildx.outputs.name }}
-          context: log/logoutput
+          context: log/logsaver
           platforms: ${{ steps.prep.outputs.platforms }}
           push: ${{ steps.prep.outputs.push }}
           tags: ${{ steps.prep.outputs.tags }}
