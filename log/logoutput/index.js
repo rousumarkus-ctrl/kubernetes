@@ -3,8 +3,9 @@ import path from 'path';
 import fs from 'fs';
 
 const directory = path.join('/', 'usr', 'src', 'app', 'files');
+const pongDirectory = path.join('/', 'usr', 'src', 'app', 'pongfiles');
 const filePath = path.join(directory, 'log.txt');
-const pongPath = path.join(directory, 'pong.txt');
+const pongPath = path.join(pongDirectory, 'pong.txt');
 
 const app = express();
 

@@ -20,12 +20,12 @@ spec:
             claimName: pong-claim
       containers:
         - name: logoutput
-          image: mrousu/logoutput:5c6df27e5bbe8519d318e12eace65e0498d56021
+          image: mrousu/logoutput:dec3a6db710536e2af5ef952eb845487e5be21c5
           volumeMounts:
             - name: shared-log
               mountPath: /usr/src/app/files
             - name: shared-pong
-              mountPath: /usr/src/app/files
+              mountPath: /usr/src/app/pongfiles
         - name: logsaver
           image: mrousu/logsaver:5c6df27e5bbe8519d318e12eace65e0498d56021
           volumeMounts:

@@ -4,7 +4,7 @@ import path from 'path';
 
 let pings = 0;
 
-const directory = path.join('/', 'usr', 'src', 'app', 'files');
+const directory = path.join('/', 'usr', 'src', 'app', 'pongfiles');
 const filePath = path.join(directory, 'pong.txt');
 fs.promises.mkdir(directory, { recursive: true });
 
