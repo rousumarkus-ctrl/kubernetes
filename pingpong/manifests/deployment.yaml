@@ -12,6 +12,13 @@ spec:
       labels:
         app: pingpong
     spec:
+      volumes:
+        - name: shared-pong
+          persistentVolumeClaim:
+            claimName: pong-claim
       containers:
         - name: pingpong
           image: mrousu/pingpong:61711ad9878ce57f7f414b684f30719da6ec1944
+          volumeMounts:
+            - name: shared-pong
+              mountPath: /usr/src/app/files
