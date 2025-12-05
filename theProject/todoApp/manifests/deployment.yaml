@@ -12,6 +12,13 @@ spec:
       labels:
         app: todo-app
     spec:
+      volumes:
+        - name: shared-image
+          persistentVolumeClaim:
+            claimName: pong-claim
       containers:
         - name: todo-app
-          image: mrousu/todoapp:2618187d5279c0f51218a6fa79e67745b8071eea
+          image: mrousu/todoapp:692d5475274a05d03bbe3633631f8659d73fac62
+          volumeMounts:
+            - name: shared-image
+              mountPath: /usr/src/app/images
