@@ -45,6 +45,15 @@ todoRouter.get('/', async (request, response) => {
     <body>
       <h1>The Project App</h1>
       <img src="/image" alt="Project Image">
+      <form>
+        <input type="text" maxlength="140">
+        <button>Create todo</button>
+        <ul>
+          <li>Learn JavaScript</li>
+          <li>Learn React</li>
+          <li>Build a project</li>
+        </ul>
+      </form>
       <p>DevOps with Kubernetes 2025</p>
     </body>
     </html>
