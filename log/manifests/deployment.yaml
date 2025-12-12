@@ -15,17 +15,17 @@ spec:
       volumes:
         - name: shared-log
           emptyDir: {}
-        - name: shared-pong
-          persistentVolumeClaim:
-            claimName: pong-claim
+        #- name: shared-pong
+        #  persistentVolumeClaim:
+        #    claimName: pong-claim
       containers:
         - name: logoutput
-          image: mrousu/logoutput:eda9c36e404844fa635c75c293b44e114782452c
+          image: mrousu/logoutput:eba0873d260a95e6df3560014ab68e9c933263f5
           volumeMounts:
             - name: shared-log
               mountPath: /usr/src/app/files
-            - name: shared-pong
-              mountPath: /usr/src/app/pongfiles
+            #- name: shared-pong
+            #  mountPath: /usr/src/app/pongfiles
         - name: logsaver
           image: mrousu/logsaver:5c6df27e5bbe8519d318e12eace65e0498d56021
           volumeMounts:
