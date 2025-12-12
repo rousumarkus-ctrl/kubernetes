@@ -32,9 +32,9 @@ const removeFile = async () =>
   new Promise((res) => fs.unlink(filePath, (err) => res()));
 
 const todoRouter = Router();
-todoRouter.get('/', async (request, response) => {
+/* todoRouter.get('/', async (request, response) => {
   await fileAgeCheck();
-});
+}); */
 
 todoRouter.get('/image', async (request, response) => {
   response.sendFile(filePath);
