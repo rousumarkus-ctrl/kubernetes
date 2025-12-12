@@ -42,6 +42,7 @@ todoRouter.get('/image', async (request, response) => {
 
 todoRouter.post('/image', async (request, response) => {
   await fileAgeCheck();
+  response.status(200).end();
 });
 
 export default todoRouter;
