@@ -18,7 +18,7 @@ spec:
             claimName: pong-claim
       containers:
         - name: todo-app
-          image: mrousu/todoapp:fc8ea032220ab2e7a59062a50bc0e721adc5772c
+          image: mrousu/todoapp:540cfcce16af5ff93efc3d57edc57913a274fd7a
           volumeMounts:
             - name: shared-image
               mountPath: /usr/src/app/images
