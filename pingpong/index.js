@@ -16,6 +16,10 @@ app.get('/pingpong', async (request, response) => {
   fs.promises.writeFile(filePath, pings.toString());
 });
 
+app.get('/pings', async (request, response) => {
+  response.send(pings);
+});
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server started in port ${PORT}`);

@@ -1,6 +1,7 @@
 import express from 'express';
 import path from 'path';
 import fs from 'fs';
+import axios from 'axios';
 
 const directory = path.join('/', 'usr', 'src', 'app', 'files');
 const pongDirectory = path.join('/', 'usr', 'src', 'app', 'pongfiles');
@@ -15,11 +16,12 @@ app.get('/', async (request, response) => {
       console.log('error ', e);
     }
   });
-  const pongs = await fs.promises.readFile(pongPath, (e) => {
+  const pongs = await axios.get('http://pingpong-svc:2345/pings');
+  /*   const pongs = await fs.promises.readFile(pongPath, (e) => {
     if (e) {
       console.log('error ', e);
     }
-  });
+  }); */
   response.send(`${data.toString()} \nPing / Pongs: ${pongs.toString()}`);
 });
 
