@@ -1,5 +1,5 @@
 # ===== FRONTEND BUILD =====
-FROM node:20 AS frontendr
+FROM node:20 AS frontend
 
 WORKDIR /usr/src/app/todo-frontend
 
