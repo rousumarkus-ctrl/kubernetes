@@ -2,7 +2,7 @@
 
 ## Exercises
 
-### Chapter 1
+### Chapter 2
 
 - [1.1](https://github.com/rousumarkus-ctrl/kubernetes/tree/1.1/logOutput)
 - [1.2](https://github.com/rousumarkus-ctrl/kubernetes/tree/1.2/theProject/todoApp)
@@ -17,3 +17,7 @@
 - [1.11](https://github.com/rousumarkus-ctrl/kubernetes/tree/1.11/log)
 - [1.12](https://github.com/rousumarkus-ctrl/kubernetes/tree/1.12/theProject/todoApp)
 - [1.13](https://github.com/rousumarkus-ctrl/kubernetes/tree/1.13/theProject/todoApp)
+
+### Chapter 3
+
+- [2.1](https://github.com/rousumarkus-ctrl/kubernetes/tree/2.1/log/logoutput)
