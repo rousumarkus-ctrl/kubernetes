@@ -18,7 +18,7 @@ spec:
             claimName: pong-claim
       containers:
         - name: pingpong
-          image: mrousu/pingpong:fc9198f08deec2b67f5ec5fbe47ae3597c0b00c4
+          image: mrousu/pingpong:eda9c36e404844fa635c75c293b44e114782452c
           volumeMounts:
             - name: shared-pong
               mountPath: /usr/src/app/pongfiles

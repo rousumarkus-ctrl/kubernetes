@@ -17,12 +17,13 @@ app.get('/', async (request, response) => {
     }
   });
   const pongs = await axios.get('http://pingpong-svc:2345/pings');
+  console.log(pongs);
   /*   const pongs = await fs.promises.readFile(pongPath, (e) => {
     if (e) {
       console.log('error ', e);
     }
   }); */
-  response.send(`${data.toString()} \nPing / Pongs: ${pongs.toString()}`);
+  response.send(`${data.toString()} \nPing / Pongs: ${pongs.data.toString()}`);
 });
 
 const PORT = process.env.PORT || 3000;
