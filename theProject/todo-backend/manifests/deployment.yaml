@@ -14,4 +14,4 @@ spec:
     spec:
       containers:
         - name: todo-backend
-          image: mrousu/todo-backend:c225e39cbeadefc081c71904170e8040f3c422a0
+          image: mrousu/todo-backend:6a0fafa1dadc9209d388c81200c78b968fadf226
