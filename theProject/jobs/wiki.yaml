@@ -8,7 +8,7 @@ spec:
     spec:
       containers:
         - name: wiki
-          image: mrousu/wiki-job
+          image: mrousu/todo-wiki:40fef67f63cc72a68e270d4b6baef49c3cdb6582
           env:
             - name: WIKI_URL
               value: https://en.wikipedia.org/wiki/Special:Random
