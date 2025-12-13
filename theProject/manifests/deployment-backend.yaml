@@ -19,3 +19,16 @@ spec:
           envFrom:
             - configMapRef:
                 name: todo-configmap
+          env:
+            - name: PGUSER
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: POSTGRES_USER
+            - name: PGPASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: POSTGRES_PASSWORD
+            - name: PGHOST
+              value: postgres-svc

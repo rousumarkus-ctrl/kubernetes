@@ -26,3 +26,4 @@
 - [2.4](https://github.com/rousumarkus-ctrl/kubernetes/tree/2.4/theProject)
 - [2.5](https://github.com/rousumarkus-ctrl/kubernetes/tree/2.5/log/logoutput)
 - [2.6](https://github.com/rousumarkus-ctrl/kubernetes/tree/2.6/theProject)
+- [2.7](https://github.com/rousumarkus-ctrl/kubernetes/tree/2.7/log)
