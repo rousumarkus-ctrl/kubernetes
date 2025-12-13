@@ -16,18 +16,27 @@ spec:
       volumes:
         - name: shared-log
           emptyDir: {}
+        - name: config
+          configMap:
+            name: log-configmap
+            items:
+              - key: 'information.txt'
+                path: 'information.txt'
         #- name: shared-pong
         #  persistentVolumeClaim:
         #    claimName: pong-claim
       containers:
         - name: logoutput
-          image: mrousu/logoutput:eba0873d260a95e6df3560014ab68e9c933263f5
+          image: mrousu/logoutput:6eb21f7fb788a13ea302061f93ccf79102d4b476
           envFrom:
             - configMapRef:
                 name: log-configmap
           volumeMounts:
             - name: shared-log
               mountPath: /usr/src/app/files
+            - name: config
+              mountPath: '/config'
+              readOnly: true
             #- name: shared-pong
             #  mountPath: /usr/src/app/pongfiles
         - name: logsaver

@@ -5,8 +5,10 @@ import axios from 'axios';
 
 const directory = path.join('/', 'usr', 'src', 'app', 'files');
 const pongDirectory = path.join('/', 'usr', 'src', 'app', 'pongfiles');
+const configDirectory = path.join('/', 'config');
 const filePath = path.join(directory, 'log.txt');
 const pongPath = path.join(pongDirectory, 'pong.txt');
+const informationPath = path.join(configDirectory, 'information.txt');
 
 const app = express();
 
@@ -22,10 +24,14 @@ app.get('/', async (request, response) => {
       console.log('error ', e);
     }
   }); */
-  console.log(process.env);
+  const information = await fs.promises.readFile(informationPath, (e) => {
+    if (e) {
+      console.log('error ', e);
+    }
+  });
   response.send(
-    `file content: ${process.env['information.txt']}\nenv variable: MESSAGE=${
-      process.env.message
+    `file content: ${information}\nenv variable: MESSAGE=${
+      process.env.MESSAGE
     }\n${data.toString()}\nPing / Pongs: ${pongs.data.toString()}`
   );
 });

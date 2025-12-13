@@ -4,6 +4,6 @@ metadata:
   name: log-configmap
   namespace: exercises
 data:
-  message: hello world
+  MESSAGE: hello world
   information.txt: |
     this text is from file
