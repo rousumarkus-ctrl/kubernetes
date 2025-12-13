@@ -1,0 +1,15 @@
+{
+  "name": "todo-wiki",
+  "version": "1.0.0",
+  "description": "",
+  "license": "MIT",
+  "author": "Markus Rousu",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "axios": "^1.13.2"
+  }
+}
