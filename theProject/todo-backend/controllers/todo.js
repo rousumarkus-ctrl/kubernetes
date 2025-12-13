@@ -1,7 +1,5 @@
 import { Router } from 'express';
-import pool from '../db';
-
-const todos = [];
+import pool from '../db.js';
 
 const todoRouter = Router();
 todoRouter.get('/', async (request, response) => {
