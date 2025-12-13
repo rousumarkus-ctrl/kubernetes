@@ -22,7 +22,12 @@ app.get('/', async (request, response) => {
       console.log('error ', e);
     }
   }); */
-  response.send(`${data.toString()} \nPing / Pongs: ${pongs.data.toString()}`);
+  console.log(process.env);
+  response.send(
+    `file content: ${process.env['information.txt']}\nenv variable: MESSAGE=${
+      process.env.message
+    }\n${data.toString()}\nPing / Pongs: ${pongs.data.toString()}`
+  );
 });
 
 const PORT = process.env.PORT || 3000;

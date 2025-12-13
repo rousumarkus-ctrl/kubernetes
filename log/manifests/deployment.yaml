@@ -22,6 +22,9 @@ spec:
       containers:
         - name: logoutput
           image: mrousu/logoutput:eba0873d260a95e6df3560014ab68e9c933263f5
+          envFrom:
+            - configMapRef:
+                name: log-configmap
           volumeMounts:
             - name: shared-log
               mountPath: /usr/src/app/files
