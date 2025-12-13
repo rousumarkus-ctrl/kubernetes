@@ -19,10 +19,20 @@ spec:
       #      claimName: pong-claim
       containers:
         - name: pingpong
-          image: mrousu/pingpong:eda9c36e404844fa635c75c293b44e114782452c
-          envFrom:
-            - secretRef:
-                name: postgres-secret
+          image: mrousu/pingpong:b7b0e8157c39b3e2357c19ba69282db2941349a2
+          env:
+            - name: PGUSER
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: POSTGRES_USER
+            - name: PGPASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: POSTGRES_PASSWORD
+            - name: PGHOST
+              value: postgres-svc
           #volumeMounts:
           #  - name: shared-pong
           #    mountPath: /usr/src/app/pongfiles
