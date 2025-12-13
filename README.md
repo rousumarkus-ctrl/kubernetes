@@ -24,3 +24,4 @@
 - [2.2](https://github.com/rousumarkus-ctrl/kubernetes/tree/2.2/theProject/todo-backend)
 - [2.3](https://github.com/rousumarkus-ctrl/kubernetes/tree/2.3/log)
 - [2.4](https://github.com/rousumarkus-ctrl/kubernetes/tree/2.4/theProject)
+- [2.5](https://github.com/rousumarkus-ctrl/kubernetes/tree/2.5/log/logoutput)

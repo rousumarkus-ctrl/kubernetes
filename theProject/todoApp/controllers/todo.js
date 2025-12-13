@@ -22,7 +22,7 @@ const fileAgeCheck = async () => {
 };
 
 const downloadFile = async () => {
-  const response = await axios.get('https://picsum.photos/1200', {
+  const response = await axios.get(process.env.PIC_URL, {
     responseType: 'stream',
   });
   response.data.pipe(fs.createWriteStream(filePath));

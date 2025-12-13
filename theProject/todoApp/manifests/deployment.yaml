@@ -20,6 +20,9 @@ spec:
       containers:
         - name: todo-app
           image: mrousu/todoapp:0a7c80d7a06375212feba253f031e1afcb37653f
+          envFrom:
+            - configMapRef:
+                name: todo-configmap
           volumeMounts:
             - name: shared-image
               mountPath: /usr/src/app/images
