@@ -19,7 +19,7 @@ spec:
             claimName: image-claim
       containers:
         - name: todo-app
-          image: mrousu/todoapp:0a7c80d7a06375212feba253f031e1afcb37653f
+          image: mrousu/todoapp:7793a73c9a121044643717b44fd6272e888d5473
           envFrom:
             - configMapRef:
                 name: todo-configmap
