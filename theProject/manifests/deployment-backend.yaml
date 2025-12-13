@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: todo-backend
-          image: mrousu/todo-backend:d94522238f66ce3cc8d8b04c5206a3b1347a4814
+          image: mrousu/todo-backend:a438e64dca6d14c3d31a0fe344312d3be2a9b874
           envFrom:
             - configMapRef:
                 name: todo-configmap

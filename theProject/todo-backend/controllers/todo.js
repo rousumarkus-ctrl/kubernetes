@@ -4,8 +4,8 @@ import pool from '../db.js';
 const todoRouter = Router();
 todoRouter.get('/', async (request, response) => {
   const res = await pool.query(`SELECT * FROM TODOS;`);
-  console.log(res);
-  response.json(res);
+  console.log(res.rows);
+  response.json(res.rows);
 });
 
 todoRouter.post('/', async (request, response) => {
@@ -14,8 +14,8 @@ todoRouter.post('/', async (request, response) => {
     `INSERT INTO todos (title) VALUES ($1) Returning *;`,
     [body.title]
   );
-  console.log(res);
-  response.status(201).json(res);
+  console.log(res.rows[0]);
+  response.status(201).json(res.rows[0]);
 });
 
 export default todoRouter;
