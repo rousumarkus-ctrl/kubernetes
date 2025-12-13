@@ -20,6 +20,9 @@ spec:
       containers:
         - name: pingpong
           image: mrousu/pingpong:eda9c36e404844fa635c75c293b44e114782452c
+          envFrom:
+            - secretRef:
+                name: postgres-secret
           #volumeMounts:
           #  - name: shared-pong
           #    mountPath: /usr/src/app/pongfiles
