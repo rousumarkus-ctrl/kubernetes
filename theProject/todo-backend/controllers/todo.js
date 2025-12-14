@@ -17,7 +17,7 @@ todoRouter.post('/', async (request, response) => {
       `INSERT INTO todos (title) VALUES ($1) Returning *;`,
       [body.title]
     );
-    console.log(`added ${res.rows[0]}`);
+    console.log(`added ${res.rows[0].title}`);
     response.status(201).json(res.rows[0]);
   }
 });
