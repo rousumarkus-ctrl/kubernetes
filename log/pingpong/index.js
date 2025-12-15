@@ -13,16 +13,29 @@ const pool = new Pool();
 const app = express();
 
 app.get('/pingpong', async (request, response) => {
-  response.send(getPings());
-  pings++;
-  pool.query(
-    `INSERT INTO ping (id,pings) VALUES (1,0) ON CONFLICT (id) DO UPDATE SET pings = ping.pings + 1;`
+  const res = await pool.query(
+    `INSERT INTO ping (id,pings) VALUES (1,0) ON CONFLICT (id) DO UPDATE SET pings = ping.pings + 1 RETURNING *;`
   );
-  fs.promises.writeFile(filePath, pings.toString());
+  response.send(res.rows[0].pings);
+  //fs.promises.writeFile(filePath, pings.toString());
 });
 
 app.get('/pings', async (request, response) => {
-  response.send(pings);
+  const res = await pool.query(`SELECT * FROM ping;`);
+  if (res.rows.length === 1) {
+    response.send(res.rows[0].pings);
+  } else {
+    response.send(0);
+  }
+});
+
+app.get('/', async (request, response) => {
+  const res = await pool.query(`SELECT * FROM ping;`);
+  if (res.rows.length === 1) {
+    response.send(res.rows[0].pings);
+  } else {
+    response.send(0);
+  }
 });
 
 const PORT = process.env.PORT || 3000;
@@ -31,16 +44,12 @@ app.listen(PORT, async () => {
   const res = await pool.query(
     `CREATE TABLE IF NOT EXISTS ping (id SERIAL PRIMARY KEY,pings INT);`
   );
-  fs.readFile(filePath, (e, data) => {
+  /*   fs.readFile(filePath, (e, data) => {
     if (e) {
       pings = 0;
       fs.promises.writeFile(filePath, pings.toString());
     } else {
       pings = parseInt(data.toString());
     }
-  });
+  }); */
 });
-
-const getPings = () => {
-  return `pong ${pings}`;
-};
