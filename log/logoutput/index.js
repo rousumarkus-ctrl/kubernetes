@@ -18,7 +18,7 @@ app.get('/', async (request, response) => {
       console.log('error ', e);
     }
   });
-  const pongs = await axios.get('http://pingpong-svc:2345/pings');
+  const pongs = await axios.get(process.env.PONG_URL);
   /*   const pongs = await fs.promises.readFile(pongPath, (e) => {
     if (e) {
       console.log('error ', e);
@@ -36,7 +36,7 @@ app.get('/', async (request, response) => {
   );
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PONG_PORT;
 app.listen(PORT, () => {
   console.log(`Server started in port ${PORT}`);
 });

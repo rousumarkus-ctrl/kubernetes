@@ -38,7 +38,7 @@ app.get('/', async (request, response) => {
   }
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PONG_PORT;
 app.listen(PORT, async () => {
   console.log(`Server started in port ${PORT}`);
   const res = await pool.query(

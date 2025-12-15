@@ -5,5 +5,8 @@ metadata:
   namespace: exercises
 data:
   MESSAGE: hello world
+  PONG_URL: http://pingpong-svc/pings
+  PONG_PORT: '3000'
+  LOG_PORT: '3000'
   information.txt: |
     this text is from file
