@@ -38,7 +38,7 @@ app.get('/', async (request, response) => {
     );
 });
 
-const PORT = process.env.PONG_PORT;
+const PORT = process.env.LOG_PORT;
 app.listen(PORT, () => {
   console.log(`Server started in port ${PORT}`);
 });
