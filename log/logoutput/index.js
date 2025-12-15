@@ -29,11 +29,13 @@ app.get('/', async (request, response) => {
       console.log('error ', e);
     }
   });
-  response.send(
-    `file content: ${information}\nenv variable: MESSAGE=${
-      process.env.MESSAGE
-    }\n${data.toString()}\nPing / Pongs: ${pongs.data.toString()}`
-  );
+  response
+    .status(200)
+    .send(
+      `file content: ${information}\nenv variable: MESSAGE=${
+        process.env.MESSAGE
+      }\n${data.toString()}\nPing / Pongs: ${pongs.data.toString()}`
+    );
 });
 
 const PORT = process.env.PONG_PORT;

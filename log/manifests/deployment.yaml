@@ -27,7 +27,7 @@ spec:
         #    claimName: pong-claim
       containers:
         - name: logoutput
-          image: mrousu/logoutput:20f1dde861565613dab3c486f69bb35bcf28f56d
+          image: mrousu/logoutput:c948e7c1422150271fec9702cabd44582acdbf64
           envFrom:
             - configMapRef:
                 name: log-configmap

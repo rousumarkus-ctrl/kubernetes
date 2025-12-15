@@ -19,8 +19,10 @@ spec:
       #      claimName: pong-claim
       containers:
         - name: pingpong
-          image: mrousu/pingpong:4b2b0277596a4692a5ed15877f800688e6d698e6
+          image: mrousu/pingpong:c948e7c1422150271fec9702cabd44582acdbf64
           env:
+            - name: PONG_PORT
+              value: '3000'
             - name: PGUSER
               valueFrom:
                 secretKeyRef:

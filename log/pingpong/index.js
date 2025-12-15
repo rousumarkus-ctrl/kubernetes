@@ -30,12 +30,7 @@ app.get('/pings', async (request, response) => {
 });
 
 app.get('/', async (request, response) => {
-  const res = await pool.query(`SELECT * FROM ping;`);
-  if (res.rows.length === 1) {
-    response.send(res.rows[0].pings);
-  } else {
-    response.send(0);
-  }
+  response.status(200).send('ok');
 });
 
 const PORT = process.env.PONG_PORT;
