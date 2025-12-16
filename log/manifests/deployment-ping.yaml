@@ -19,7 +19,7 @@ spec:
       #      claimName: pong-claim
       containers:
         - name: pingpong
-          image: mrousu/pingpong:713f1a7c224f8803653aaccfa71cc44b3f4a16f2
+          image: mrousu/pingpong:abd42c0bf0264cf5c313d81b0deb5c570dac50ec
           env:
             - name: PONG_PORT
               value: '3000'
