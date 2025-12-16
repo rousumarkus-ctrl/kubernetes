@@ -6,4 +6,3 @@ metadata:
 data:
   PIC_URL: https://picsum.photos/1200
   APP_PORT: '3000'
-  BACKEND_PORT: '3000'
