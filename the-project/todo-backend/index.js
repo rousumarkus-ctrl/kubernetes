@@ -7,9 +7,15 @@ const directory = path.join('/', 'usr', 'src', 'app', 'images');
 
 const PORT = process.env.BACKEND_PORT;
 app.listen(PORT, async () => {
-  const res = await pool.query(
-    `CREATE TABLE IF NOT EXISTS todos (id SERIAL PRIMARY KEY,title TEXT NOT NULL);`
-  );
+  console.log('Got to query');
+  try {
+    const res = await pool.query(
+      `CREATE TABLE IF NOT EXISTS todos (id SERIAL PRIMARY KEY,title TEXT NOT NULL);`
+    );
+  } catch (e) {
+    console.log('Query failed', e);
+  }
+
   fs.promises.mkdir(directory, { recursive: true });
   console.log(`Server started in port ${PORT}`);
 });
