@@ -15,6 +15,7 @@ env:
 
 jobs:
   build-publish-deploy:
+    environment: GKE
     name: Build, Publish and Deploy
     runs-on: ubuntu-latest
     steps:
