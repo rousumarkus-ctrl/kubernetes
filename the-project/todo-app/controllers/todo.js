@@ -26,7 +26,6 @@ const downloadFile = async () => {
   const response = await axios.get(process.env.PIC_URL, {
     responseType: 'stream',
   });
-  console.log(response);
   response.data.pipe(fs.createWriteStream(filePath));
 };
 

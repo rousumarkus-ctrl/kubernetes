@@ -4,5 +4,5 @@ metadata:
   name: todo-app-configmap
   namespace: project
 data:
-  PIC_URL: https://picsum.photos/1200
+  PIC_URL: 'https://picsum.photos/1200'
   APP_PORT: '3000'
