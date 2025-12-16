@@ -4,7 +4,7 @@ import pool from '../db.js';
 const todoRouter = Router();
 todoRouter.get('/', async (request, response) => {
   const res = await pool.query(`SELECT * FROM TODOS;`);
-  response.json(res.rows);
+  response.status(200).json(res.rows);
 });
 
 todoRouter.post('/', async (request, response) => {
