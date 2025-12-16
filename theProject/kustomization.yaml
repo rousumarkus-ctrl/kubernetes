@@ -2,7 +2,6 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - manifests/project.yaml
-  - manifests/persistent-image.yaml
   - manifests/persistent-image-claim.yaml
   - manifests/config.yaml
   - manifests/postgres-secret.yaml
