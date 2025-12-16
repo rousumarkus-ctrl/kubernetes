@@ -1,4 +1,4 @@
-name: Release application
+name: Release todo-backend
 
 on:
   push:
@@ -48,8 +48,7 @@ jobs:
         run: echo "IMAGE_TAG=$REGISTRY/$PROJECT_ID/$REPOSITORY/$IMAGE:$BRANCH-$GITHUB_SHA" >> $GITHUB_ENV
 
       - name: Build
-        working-directory: ./the-project/todo-backend
-        run: docker build --tag $IMAGE_TAG .
+        run: docker build --tag $IMAGE_TAG ./the-project/todo-backend
 
       - name: Publish
         run: docker push $IMAGE_TAG
@@ -61,6 +60,6 @@ jobs:
         working-directory: ./the-project/todo-backend
         run: |-
           kustomize edit set image PROJECT/IMAGE=$IMAGE_TAG
-          kustomize build . | kubectl apply -f -
+          kustomize build ./the-project/todo-backend | kubectl apply -f -
           kubectl rollout status deployment $SERVICE
           kubectl get services -o wide
