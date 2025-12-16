@@ -25,6 +25,7 @@ spec:
           volumeMounts:
             - name: postgres-data-storage
               mountPath: /var/lib/postgresql/18/docker
+              subPath: postgres
   volumeClaimTemplates:
     - metadata:
         name: postgres-data-storage
