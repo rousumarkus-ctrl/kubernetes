@@ -22,6 +22,7 @@ const fileAgeCheck = async () => {
 };
 
 const downloadFile = async () => {
+  console.log(process.env.PIC_URL);
   const response = await axios.get(process.env.PIC_URL, {
     responseType: 'stream',
   });

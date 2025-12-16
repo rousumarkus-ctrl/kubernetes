@@ -1,4 +1,4 @@
-name: Release todo-backend
+name: Release todo-app
 
 on:
   push:
