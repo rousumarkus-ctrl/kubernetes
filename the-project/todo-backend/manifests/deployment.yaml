@@ -18,7 +18,7 @@ spec:
           image: mrousu/todo-backend:904e92c18f6cbae058841a75203ff4b872be34ee
           envFrom:
             - configMapRef:
-                name: todo-configmap
+                name: todo-backend-configmap
           env:
             - name: PGUSER
               valueFrom:
