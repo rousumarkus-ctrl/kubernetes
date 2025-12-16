@@ -12,11 +12,11 @@ const pool = new Pool();
 
 const app = express();
 
-app.get('/pingpong', async (request, response) => {
+app.get('/', async (request, response) => {
   const res = await pool.query(
     `INSERT INTO ping (id,pings) VALUES (1,0) ON CONFLICT (id) DO UPDATE SET pings = ping.pings + 1 RETURNING *;`
   );
-  response.send(res.rows[0].pings);
+  response.status(200).send(res.rows[0].pings);
   //fs.promises.writeFile(filePath, pings.toString());
 });
 
@@ -27,10 +27,6 @@ app.get('/pings', async (request, response) => {
   } else {
     response.send(0);
   }
-});
-
-app.get('/', async (request, response) => {
-  response.status(200).send('ok');
 });
 
 const PORT = process.env.PONG_PORT;
