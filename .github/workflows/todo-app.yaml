@@ -14,7 +14,6 @@ env:
   REPOSITORY: my-repository
   IMAGE: todo-app
   SERVICE: todo-app-dep
-  NAMESPACE: project
   FOLDER: ./the-project/todo-app
   BRANCH: ${{ github.ref_name }}
 
@@ -58,12 +57,19 @@ jobs:
       - name: Set up Kustomize
         uses: imranismail/setup-kustomize@v2.1.0
 
+      - name: Set namespace
+        run: echo "NAMESPACE=${GITHUB_REF#refs/heads/}"
+
+      - name: Set namespace for master
+        if: github.ref == 'refs/heads/master'
+        run: echo "NAMESPACE=project" >> $GITHB_ENV
+
       - name: Deploy
         working-directory: ${{ env.FOLDER }}
         run: |-
-          kubectl create namespace ${GITHUB_REF#refs/heads/} || true
-          kubectl config set-context --current --namespace=${GITHUB_REF#refs/heads/}
-          kustomize edit set namespace ${GITHUB_REF#refs/heads/}
+          kubectl create namespace $NAMESPACE || true
+          kubectl config set-context --current --namespace=$NAMESPACE
+          kustomize edit set namespace $NAMESPACE
           kustomize edit set image PROJECT/IMAGE=$IMAGE_TAG
           kustomize build . | kubectl apply -f -
           kubectl rollout status deployment/$SERVICE
