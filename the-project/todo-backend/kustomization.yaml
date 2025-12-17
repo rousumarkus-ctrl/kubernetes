@@ -2,7 +2,8 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
   - name: PROJECT/IMAGE
-    newName: todo-backend:latest
+    newName: mrousu/todo-backend:3.5
+
 resources:
   - manifests/namespace.yaml
   - manifests/postgres-secret.yaml
