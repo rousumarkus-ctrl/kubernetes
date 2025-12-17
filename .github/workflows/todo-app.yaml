@@ -58,11 +58,11 @@ jobs:
         uses: imranismail/setup-kustomize@v2.1.0
 
       - name: Set namespace
-        run: echo "NAMESPACE=${GITHUB_REF#refs/heads/}"
+        run: echo "NAMESPACE=${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
 
       - name: Set namespace for master
         if: github.ref == 'refs/heads/master'
-        run: echo "NAMESPACE=project" >> $GITHB_ENV
+        run: echo "NAMESPACE=project" >> $GITHUB_ENV
 
       - name: Deploy
         working-directory: ${{ env.FOLDER }}
