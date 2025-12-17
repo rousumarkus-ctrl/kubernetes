@@ -38,3 +38,4 @@
 - [3.3](https://github.com/rousumarkus-ctrl/kubernetes/tree/3.3/log)
 - [3.4](https://github.com/rousumarkus-ctrl/kubernetes/tree/3.4/log/pingpong)
 - [3.5](https://github.com/rousumarkus-ctrl/kubernetes/tree/3.5/theProject)
+- [3.6](https://github.com/rousumarkus-ctrl/kubernetes/tree/3.6/.github/workflows)
