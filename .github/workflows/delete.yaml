@@ -12,7 +12,7 @@ env:
   IMAGE: todo-backend
   SERVICE: todo-backend-dep
   FOLDER: ./the-project/todo-backend
-  BRANCH: ${{ github.ref_name }}
+  BRANCH: ${{ github.event.ref }}
 
 jobs:
   delete:
