@@ -2,9 +2,9 @@ name: Release todo-backend
 
 on:
   push:
-    paths:
-      - 'the-project/todo-backend/**'
-      - '.github/workflows/todo-backend.yaml'
+    #paths:
+    #  - 'the-project/todo-backend/**'
+    #  - '.github/workflows/todo-backend.yaml'
 
 env:
   PROJECT_ID: ${{ secrets.GKE_PROJECT }}

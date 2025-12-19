@@ -1,0 +1,57 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: postgres-backup
+  namespace: project
+spec:
+  schedule: '0 0 * * *'
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 3
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - name: backup
+              image: google/cloud-sdk:slim
+              env:
+                - name: PGHOST
+                  value: postgres-svc
+                - name: PGUSER
+                  valueFrom:
+                    secretKeyRef:
+                      name: postgres-secret
+                      key: POSTGRES_USER
+                - name: PGPASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: postgres-secret
+                      key: POSTGRES_PASSWORD
+                - name: GOOGLE_APPLICATION_CREDENTIALS
+                  value: /secrets/key.json
+                - name: BUCKET
+                  value: gs://pg-dump-todos
+              volumeMounts:
+                - name: gcp-key
+                  mountPath: /secrets
+                  readOnly: true
+              command:
+                - /bin/sh
+                - -c
+                - |
+                  set -e
+                  TIMESTAMP=$(date +%Y-%m-%d_%H-%M-%S)
+                  FILE=/tmp/todo-backup-$TIMESTAMP.sql
+
+                  echo "dumping"
+                  pg_dump > $FILE
+
+                  echo "uploading"
+                  gsutil cp $FILE $BUCKET/
+
+                  echo "done: $FILE"
+          volumes:
+            - name: gcp-key
+              secret:
+                secretName: gcs-backup-sa
