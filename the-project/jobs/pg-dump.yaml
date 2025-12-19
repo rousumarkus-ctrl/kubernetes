@@ -14,7 +14,7 @@ spec:
           restartPolicy: OnFailure
           containers:
             - name: backup
-              image: google/cloud-sdk:slim
+              image: mrousu/pg-dump:4
               env:
                 - name: PGHOST
                   value: postgres-svc
@@ -29,7 +29,7 @@ spec:
                       name: postgres-secret
                       key: POSTGRES_PASSWORD
                 - name: GOOGLE_APPLICATION_CREDENTIALS
-                  value: /secrets/key.json
+                  value: /secrets/pg-dump-todos-key.json
                 - name: BUCKET
                   value: gs://pg-dump-todos
               volumeMounts:
@@ -44,11 +44,15 @@ spec:
                   TIMESTAMP=$(date +%Y-%m-%d_%H-%M-%S)
                   FILE=/tmp/todo-backup-$TIMESTAMP.sql
 
+                  gcloud auth list
+                  gcloud auth activate-service-account pg-dump-todos@dwk-gke-481212.iam.gserviceaccount.com --key-file=/secrets/pg-dump-todos-key.json
+                  gcloud auth list
+
                   echo "dumping"
                   pg_dump > $FILE
 
-                  echo "uploading"
-                  gsutil cp $FILE $BUCKET/
+                  echo "uploading $BUCKET"
+                  gsutil cp $FILE $BUCKET
 
                   echo "done: $FILE"
           volumes:
