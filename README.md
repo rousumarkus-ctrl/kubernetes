@@ -52,3 +52,4 @@
   Overall DBaaS are easier and cheaper initially, while DIY get cheaper long term, but requires knowledge and makes you responsible for your own data. Biggest problem for DBaaS as with any 'as a service' is that you get stuck in their ecosystem where they'll be able to overcharge you.
 
 - [3.10](https://github.com/rousumarkus-ctrl/kubernetes/tree/3.10/the-project/jobs)
+- [3.11](https://github.com/rousumarkus-ctrl/kubernetes/tree/3.11/the-project)
