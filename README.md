@@ -50,3 +50,5 @@
   Back up: DIY requires you to set it up yourself and makes you more responsible for it, while with DBaas it is the responsibility of the service provider. DBaaS should be mostly automatic while DIY you have to make sure you create back ups often and in a way that can't corrupt the database. If you want to be extra secure you also have to make offsite back ups.
 
   Overall DBaaS are easier and cheaper initially, while DIY get cheaper long term, but requires knowledge and makes you responsible for your own data. Biggest problem for DBaaS as with any 'as a service' is that you get stuck in their ecosystem where they'll be able to overcharge you.
+
+- [3.10](https://github.com/rousumarkus-ctrl/kubernetes/tree/3.10/the-project/jobs)

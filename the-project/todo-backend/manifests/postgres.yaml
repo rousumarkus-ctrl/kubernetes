@@ -17,6 +17,13 @@ spec:
       containers:
         - name: postgres
           image: postgres:18.0
+          resources:
+            requests:
+              memory: '50Mi'
+              cpu: '3m'
+            limits:
+              memory: '80Mi'
+              cpu: '5m'
           envFrom:
             - secretRef:
                 name: postgres-secret
