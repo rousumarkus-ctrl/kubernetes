@@ -14,12 +14,21 @@ todoRouter.post('/', async (request, response) => {
     response.status(400).json({ error: 'too long' });
   } else {
     const res = await pool.query(
-      `INSERT INTO todos (title) VALUES ($1) Returning *;`,
-      [body.title]
+      `INSERT INTO todos (title,done) VALUES ($1,$2) RETURNING *;`,
+      [body.title, body.done]
     );
     console.log(`added ${res.rows[0].title}`);
     response.status(201).json(res.rows[0]);
   }
+});
+
+todoRouter.put('/:id', async (request, response) => {
+  const { done } = request.body;
+  const res = await pool.query(
+    `UPDATE todos SET done = $1 WHERE id = $2 RETURNING *;`,
+    [request.params.id, done]
+  );
+  response.json(res[0]);
 });
 
 todoRouter.get('/healthz', async (request, response) => {

@@ -17,8 +17,14 @@ function App() {
 
   const createTodo = async (todoObject) => {
     const returnedTodo = await todoService.create(todoObject);
-    console.log(returnedTodo);
+    console.log('added', returnedTodo);
     setTodos(todos.concat(returnedTodo));
+  };
+
+  const markAsDone = async (id) => {
+    const returnedTodo = await todoService.mark(id);
+    console.log('done', returnedTodo);
+    setTodos(todos.filter((t) => t.id != id).concat(returnedTodo));
   };
 
   return (
@@ -26,12 +32,28 @@ function App() {
       <h1>The Project App</h1>
       <img src="/image" style={{ width: '400px', height: '400px' }}></img>
       <TodoForm createTodo={createTodo}></TodoForm>
+      <h2>Todo</h2>
       <ul>
-        {todos.map((todo) => (
-          <Todo key={todo.title} todo={todo}></Todo>
-        ))}
+        {todos
+          .filter((t) => !t.done)
+          .map((todo) => (
+            <Todo key={todo.title} todo={todo} mark={markAsDone}></Todo>
+          ))}
       </ul>
-      <p>DevOps with Kubernetes 2025</p>
+      <h2>Done</h2>
+      <ul>
+        {todos
+          .filter((t) => t.done)
+          .map((todo) => (
+            <Todo key={todo.title} todo={todo} mark={markAsDone}></Todo>
+          ))}
+      </ul>
+      <p>
+        <a href="https://courses.mooc.fi/org/uh-cs/courses/devops-with-kubernetes">
+          DevOps with Kubernetes 2025
+        </a>
+        University of Helsinki
+      </p>
     </>
   );
 }

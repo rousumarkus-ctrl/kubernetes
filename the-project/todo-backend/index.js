@@ -8,7 +8,7 @@ const directory = path.join('/', 'usr', 'src', 'app', 'images');
 const createTable = async () => {
   try {
     const res = await pool.query(
-      `CREATE TABLE IF NOT EXISTS todos (id SERIAL PRIMARY KEY,title TEXT NOT NULL);`
+      `CREATE TABLE IF NOT EXISTS todos (id SERIAL PRIMARY KEY,title TEXT NOT NULL,done boolean NOT NULL default TRUE);`
     );
   } catch (e) {
     console.log('Query failed', e);
