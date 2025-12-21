@@ -23,7 +23,7 @@ spec:
               path: /healthz
               port: 3000
           livenessProbe:
-            initialDelaySeconds: 120
+            initialDelaySeconds: 150
             periodSeconds: 5
             httpGet:
               path: /healthz
@@ -31,10 +31,10 @@ spec:
           resources:
             requests:
               memory: '50Mi'
-              cpu: '3m'
+              cpu: '10m'
             limits:
               memory: '80Mi'
-              cpu: '5m'
+              cpu: '15m'
           envFrom:
             - configMapRef:
                 name: todo-backend-configmap

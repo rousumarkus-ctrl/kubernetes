@@ -29,8 +29,6 @@ todoRouter.get('/healthz', async (request, response) => {
   } catch (e) {
     response.status(400).end();
   }
-
-  response.status(200).json(res.rows);
 });
 
 export default todoRouter;
