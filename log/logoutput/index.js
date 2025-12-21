@@ -38,6 +38,15 @@ app.get('/', async (request, response) => {
     );
 });
 
+app.get('/healthz', async (request, response) => {
+  try {
+    const pongs = await axios.get(process.env.PONG_URL);
+    response.status(200).end();
+  } catch (e) {
+    response.status(500).end();
+  }
+});
+
 const PORT = process.env.LOG_PORT;
 app.listen(PORT, () => {
   console.log(`Server started in port ${PORT}`);

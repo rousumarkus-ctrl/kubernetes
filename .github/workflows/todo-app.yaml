@@ -2,9 +2,9 @@ name: Release todo-app
 
 on:
   push:
-    #paths:
-    #  - 'the-project/todo-app/**'
-    #  - '.github/workflows/todo-app.yaml'
+    paths:
+      - 'the-project/todo-app/**'
+      - '.github/workflows/todo-app.yaml'
 
 env:
   PROJECT_ID: ${{ secrets.GKE_PROJECT }}
@@ -15,6 +15,7 @@ env:
   IMAGE: todo-app
   SERVICE: todo-app-dep
   FOLDER: ./the-project/todo-app
+  ORIG: project
   BRANCH: ${{ github.ref_name }}
 
 jobs:
@@ -62,7 +63,7 @@ jobs:
 
       - name: Set namespace for master
         if: github.ref == 'refs/heads/master'
-        run: echo "NAMESPACE=project" >> $GITHUB_ENV
+        run: echo "NAMESPACE=$ORIG" >> $GITHUB_ENV
 
       - name: Deploy
         working-directory: ${{ env.FOLDER }}

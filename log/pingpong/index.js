@@ -12,6 +12,17 @@ const pool = new Pool();
 
 const app = express();
 
+const createTable = async () => {
+  try {
+    const res = await pool.query(
+      `CREATE TABLE IF NOT EXISTS ping (id SERIAL PRIMARY KEY,pings INT);`
+    );
+  } catch (e) {
+    console.log('Query failed', e);
+    setTimeout(createTable, 5000);
+  }
+};
+
 app.get('/', async (request, response) => {
   const res = await pool.query(
     `INSERT INTO ping (id,pings) VALUES (1,0) ON CONFLICT (id) DO UPDATE SET pings = ping.pings + 1 RETURNING *;`
@@ -29,12 +40,21 @@ app.get('/pings', async (request, response) => {
   }
 });
 
+app.get('/healthz', async (request, response) => {
+  try {
+    const res = await pool.query(
+      `CREATE TABLE IF NOT EXISTS ping (id SERIAL PRIMARY KEY,pings INT);`
+    );
+    response.status(200).end();
+  } catch (e) {
+    response.status(500).end();
+  }
+});
+
 const PORT = process.env.PONG_PORT;
 app.listen(PORT, async () => {
   console.log(`Server started in port ${PORT}`);
-  const res = await pool.query(
-    `CREATE TABLE IF NOT EXISTS ping (id SERIAL PRIMARY KEY,pings INT);`
-  );
+  createTable();
   /*   fs.readFile(filePath, (e, data) => {
     if (e) {
       pings = 0;

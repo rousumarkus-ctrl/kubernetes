@@ -27,7 +27,7 @@ spec:
         #    claimName: pong-claim
       containers:
         - name: logoutput
-          image: mrousu/logoutput:66067c9ce6f09784442289ab9c2f58bfcbb033fa
+          image: LOG/OUTPUT
           envFrom:
             - configMapRef:
                 name: log-configmap
@@ -40,7 +40,7 @@ spec:
             #- name: shared-pong
             #  mountPath: /usr/src/app/pongfiles
         - name: logsaver
-          image: mrousu/logsaver:5c6df27e5bbe8519d318e12eace65e0498d56021
+          image: LOG/SAVER
           volumeMounts:
             - name: shared-log
               mountPath: /usr/src/app/files
