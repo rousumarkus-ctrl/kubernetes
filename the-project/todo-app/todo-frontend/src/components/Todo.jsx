@@ -1,8 +1,12 @@
 const Todo = ({ todo, mark }) => {
+  const markAsDone = (event) => {
+    event.preventDefault();
+    mark(todo.id);
+  };
   return (
     <li>
       {todo.title}
-      <button onClick={() => mark(todo.id)}>Mark as done</button>
+      <button onClick={() => markAsDone}>Mark as done</button>
     </li>
   );
 };

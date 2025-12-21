@@ -45,7 +45,7 @@ function App() {
         {todos
           .filter((t) => t.done)
           .map((todo) => (
-            <Todo key={todo.title} todo={todo} mark={markAsDone}></Todo>
+            <Done key={todo.title} todo={todo} mark={markAsDone}></Done>
           ))}
       </ul>
       <p>
