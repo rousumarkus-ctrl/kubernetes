@@ -1,4 +1,4 @@
-name: Release todoApp
+name: Docker todo-app
 
 on:
   push:

@@ -1,4 +1,4 @@
-name: Release todo-backend
+name: Docker todo-backend
 
 on:
   push:
