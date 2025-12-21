@@ -4,6 +4,7 @@ import todoService from './services/todos';
 import { useEffect } from 'react';
 import Todo from './components/Todo';
 import axios from 'axios';
+import Done from './components/Done';
 
 function App() {
   const [todos, setTodos] = useState([]);
