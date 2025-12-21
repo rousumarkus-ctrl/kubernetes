@@ -6,7 +6,7 @@ const Todo = ({ todo, mark }) => {
   return (
     <li>
       {todo.title}
-      <button onClick={() => markAsDone}>Mark as done</button>
+      <button onClick={markAsDone}>Mark as done</button>
     </li>
   );
 };
