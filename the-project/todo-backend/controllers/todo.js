@@ -22,4 +22,15 @@ todoRouter.post('/', async (request, response) => {
   }
 });
 
+todoRouter.get('/healthz', async (request, response) => {
+  try {
+    const res = await pool.query(`SELECT * FROM TODOS;`);
+    response.status(200).end();
+  } catch (e) {
+    response.status(400).end();
+  }
+
+  response.status(200).json(res.rows);
+});
+
 export default todoRouter;
