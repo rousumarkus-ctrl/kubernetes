@@ -7,7 +7,7 @@ images:
 resources:
   - manifests/namespace.yaml
   - manifests/postgres-secret.yaml
-  #- manifests/postgres.yaml
+  - manifests/postgres.yaml
   - manifests/gateway.yaml
   - manifests/route.yaml
   - manifests/deployment.yaml
