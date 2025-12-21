@@ -28,7 +28,8 @@ todoRouter.put('/:id', async (request, response) => {
     `UPDATE todos SET done = $1 WHERE id = $2 RETURNING *;`,
     [done, request.params.id]
   );
-  response.json(res[0]);
+  console.log('updated to', res);
+  response.status(200).json(res[0]);
 });
 
 todoRouter.get('/healthz', async (request, response) => {
