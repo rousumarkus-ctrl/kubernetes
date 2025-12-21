@@ -58,3 +58,5 @@
 ### Chapter 5
 
 - [4.1](https://github.com/rousumarkus-ctrl/kubernetes/tree/4.1/log)
+- [4.2](https://github.com/rousumarkus-ctrl/kubernetes/tree/4.2/the-project)
+- 4.3: sum(kube_pod_info{namespace='prometheus',created_by_kind='StatefulSet'})
