@@ -23,12 +23,12 @@ spec:
           ports:
             - containerPort: 5432
           volumeMounts:
-            - name: postgres-data-storage
+            - name: postgres-exercises-data-storage
               mountPath: /var/lib/postgresql/18/docker
               subPath: postgres
   volumeClaimTemplates:
     - metadata:
-        name: postgres-data-storage
+        name: postgres-exercises-data-storage
       spec:
         accessModes: ['ReadWriteOnce']
         resources:
