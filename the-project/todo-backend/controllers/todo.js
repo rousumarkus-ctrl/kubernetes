@@ -26,7 +26,7 @@ todoRouter.put('/:id', async (request, response) => {
   const { done } = request.body;
   const res = await pool.query(
     `UPDATE todos SET done = $1 WHERE id = $2 RETURNING *;`,
-    [request.params.id, done]
+    [done, request.params.id]
   );
   response.json(res[0]);
 });
