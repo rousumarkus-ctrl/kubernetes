@@ -3,9 +3,9 @@ name: Deploy production
 on:
   push:
     branches:
-      - '!**'
-    tags:
       - '**'
+    tags:
+      - '!**'
 
 env:
   USER: mrousu
@@ -84,6 +84,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
+          token: ${{ secrets.KUBERNETES_CONFIG_TOKEN }}
           repository: rousumarkus-ctrl/kubernetes-config
           path: kubernetes-config
 
@@ -100,10 +101,14 @@ jobs:
         run: |
           kustomize edit set image PROJECT/TODOBACKEND=${{ needs.todo-backend.outputs.image }}
 
-      - name: commit kustomization.yaml to GitHub
-        uses: EndBug/add-and-commit@v9
-        with:
-          add: |
-            'kubernetes-config/the-project/todo-app/overlays/prod/kustomization.yaml'
-            'kubernetes-config/the-project/todo-backend/overlays/prod/kustomization.yaml'
-          message: New version released ${{ github.sha }}
+      - name: commit
+        working-directory: ./kubernetes-config
+        env:
+          GITHUB_TOKEN: ${{ secrets.KUBERNETES_CONFIG_TOKEN}}
+        run: |
+          git config user.name 'rousumarkus-ctrl'
+          git config user.email 'rousu.markus@gmail.com'
+          git add 'the-project/todo-app/overlays/prod/kustomization.yaml'
+          git add 'the-project/todo-backend/overlays/prod/kustomization.yaml'
+          git commit -m 'Update configs ${{ github.sha}}'
+          git push
