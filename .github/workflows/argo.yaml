@@ -100,6 +100,19 @@ jobs:
         run: |
           kustomize edit set image PROJECT/TODOBACKEND=${{ needs.todo-backend.outputs.image }}
 
+      - name: commit
+        working-directory: ./kubernetes-config
+        env:
+          GITHUB_TOKEN: ${{ secrets.KUBERNETES_CONFIG_TOKEN}}
+        run: |
+          echo ls
+          git config user.name 'rousumarkus-ctrl'
+          git config user.email 'rousu.markus@gmail.com'
+          git add 'the-project/todo-app/overlays/staging/kustomization.yaml'
+          git add 'the-project/todo-backend/overlays/staging/kustomization.yaml'
+          git commit -m 'Update configs ${{ github.sha}}'
+          git push
+
       - name: commit kustomization.yaml to GitHub
         uses: EndBug/add-and-commit@v9
         with:
