@@ -71,9 +71,99 @@ jobs:
           docker build --tag "$IMAGE_SAVER" .
           docker push "$IMAGE_SAVER"
 
+  pingpong:
+    name: Build, Push pingpong
+    runs-on: ubuntu-latest
+    outputs:
+      image: ${{ steps.set-image.outputs.IMAGE_PINGPONG }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.ref }}
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Form the image name
+        id: set-image
+        run: |
+          echo "IMAGE_PINGPONG=$USER/pingpong:$GITHUB_SHA" >> $GITHUB_ENV
+          echo "IMAGE_PINGPONG=$USER/pingpong:$GITHUB_SHA" >> $GITHUB_OUTPUT
+
+      - name: Build and publish backend
+        working-directory: ./log/pingpong
+        run: |-
+          docker build --tag "$IMAGE_PINGPONG" .
+          docker push "$IMAGE_PINGPONG"
+
+  todo-backend:
+    name: Build, Push todo-backend
+    runs-on: ubuntu-latest
+    outputs:
+      image: ${{ steps.set-image.outputs.IMAGE_BACKEND }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.ref }}
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Form the image name
+        id: set-image
+        run: |
+          echo "IMAGE_BACKEND=$USER/todo-backend:$GITHUB_SHA" >> $GITHUB_ENV
+          echo "IMAGE_BACKEND=$USER/todo-backend:$GITHUB_SHA" >> $GITHUB_OUTPUT
+
+      - name: Build and publish backend
+        working-directory: ./the-project/todo-backend
+        run: |-
+          docker build --tag "$IMAGE_BACKEND" .
+          docker push "$IMAGE_BACKEND"
+
+  todo-app:
+    name: Build, Push todo-app
+    runs-on: ubuntu-latest
+    outputs:
+      image: ${{ steps.set-image.outputs.IMAGE_APP }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.ref }}
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Form the image name
+        id: set-image
+        run: |
+          echo "IMAGE_APP=$USER/todo-app:$GITHUB_SHA" >> $GITHUB_ENV
+          echo "IMAGE_APP=$USER/todo-app:$GITHUB_SHA" >> $GITHUB_OUTPUT
+
+      - name: Build and publish backend
+        working-directory: ./the-project/todo-app
+        run: |-
+          docker build --tag "$IMAGE_APP" .
+          docker push "$IMAGE_APP"
+
   set-kustomization:
     name: Update kustom
-    needs: [output, saver]
+    needs: [output, saver, pingpong, todo-backend, todo-app]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -85,14 +175,33 @@ jobs:
       - name: Set up Kustomize
         uses: imranismail/setup-kustomize@v2
 
-      - name: Use right image
+      - name: Use log image
         working-directory: ./log
         run: |
           kustomize edit set image LOG/OUTPUT=${{ needs.output.outputs.image }}
           kustomize edit set image LOG/SAVER=${{ needs.saver.outputs.image }}
 
+      - name: Use pingpong image
+        working-directory: ./log/pingpong
+        run: |
+          kustomize edit set image LOG/PINGPONG=${{ needs.pingpong.outputs.image }}
+
+      - name: Use pingpong image
+        working-directory: ./the-project/todo-app
+        run: |
+          kustomize edit set image PROJECT/TODOAPP=${{ needs.todo-app.outputs.image }}
+
+      - name: Use pingpong image
+        working-directory: ./the-project/todo-backend
+        run: |
+          kustomize edit set image PROJECT/TODOBACKEND=${{ needs.pingpong.outputs.image }}
+
       - name: commit kustomization.yaml to GitHub
         uses: EndBug/add-and-commit@v9
         with:
-          add: 'log/kustomization.yaml'
+          add: |
+            'log/kustomization.yaml'
+            'log/pingpong/kustomization.yaml'
+            'the-project/todo-app/kustomization.yaml'
+            'the-project/todo-backend/kustomization.yaml'
           message: New version released ${{ github.sha }}
