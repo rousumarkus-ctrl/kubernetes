@@ -2,16 +2,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 images:
-  - name: LOG/OUTPUT
-    newName: mrousu/logoutput
-    newTag: d0a66e091bd916f939482fa9f46a81f00fa9d92f
-  - name: LOG/SAVER
-    newName: mrousu/logsaver
-    newTag: 0848a53be4b5089368dbfe0bb0401937b64b7526
+- name: LOG/OUTPUT
+- name: LOG/SAVER
 resources:
-  - manifests/exercises.yaml
-  - manifests/config.yaml
-  - manifests/deployment.yaml
-  - manifests/service.yaml
-  - manifests/gateway.yaml
-  - manifests/route.yaml
+- manifests/exercises.yaml
+- manifests/config.yaml
+- manifests/deployment.yaml
+- manifests/service.yaml
+- manifests/gateway.yaml
+- manifests/route.yaml
