@@ -105,5 +105,5 @@ jobs:
         with:
           add: |
             './kubernetes-config/the-project/todo-app/overlays/staging/kustomization.yaml'
-            './kubernetes-config/the-project/todo-backend/overlays/base/kustomization.yaml'
+            './kubernetes-config/the-project/todo-backend/overlays/staging/kustomization.yaml'
           message: New version released ${{ github.sha }}
