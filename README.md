@@ -61,3 +61,4 @@
 - [4.2](https://github.com/rousumarkus-ctrl/kubernetes/tree/4.2/the-project)
 - 4.3: sum(kube_pod_info{namespace='prometheus',created_by_kind='StatefulSet'})
 - [4.4](https://github.com/rousumarkus-ctrl/kubernetes/tree/4.4/log)
+- [4.5](https://github.com/rousumarkus-ctrl/kubernetes/tree/4.5/the-project)
