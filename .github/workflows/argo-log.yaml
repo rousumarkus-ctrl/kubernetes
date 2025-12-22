@@ -14,6 +14,8 @@ jobs:
   output:
     name: Build, Push output
     runs-on: ubuntu-latest
+    outputs:
+      image: ${{ steps.set-image.outputs.IMAGE_OUTPUT }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -28,7 +30,10 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Form the image name
-        run: echo "IMAGE_OUTPUT=$USER/logoutput:$GITHUB_SHA" >> $GITHUB_ENV
+        id: set-image
+        run: |
+          echo "IMAGE_OUTPUT=$USER/logoutput:$GITHUB_SHA" >> $GITHUB_ENV
+          echo "IMAGE_OUTPUT=$USER/logoutput:$GITHUB_SHA" >> $GITHUB_OUTPUT
 
       - name: Build and publish backend
         working-directory: ./log/logoutput
@@ -39,6 +44,8 @@ jobs:
   saver:
     name: Build, Push saver
     runs-on: ubuntu-latest
+    outputs:
+      image: ${{ steps.set-image.outputs.IMAGE_SAVER }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -53,7 +60,10 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Form the image name
-        run: echo "IMAGE_SAVER=$USER/logsaver:$GITHUB_SHA" >> $GITHUB_ENV
+        id: set-image
+        run: |
+          echo "IMAGE_SAVER=$USER/logsaver:$GITHUB_SHA" >> $GITHUB_ENV
+          echo "IMAGE_SAVER=$USER/logsaver:$GITHUB_SHA" >> $GITHUB_OUTPUT
 
       - name: Build and publish backend
         working-directory: ./log/logsaver
@@ -78,8 +88,8 @@ jobs:
       - name: Use right image
         working-directory: ./log
         run: |
-          kustomize edit set image LOG/OUTPUT=$IMAGE_OUTPUT
-          kustomize edit set image LOG/SAVER=$IMAGE_SAVER
+          kustomize edit set image LOG/OUTPUT=${{ needs.output.outputs.image }}
+          kustomize edit set image LOG/SAVER=${{ needs.saver.outputs.image }}
 
       - name: commit kustomization.yaml to GitHub
         uses: EndBug/add-and-commit@v9
