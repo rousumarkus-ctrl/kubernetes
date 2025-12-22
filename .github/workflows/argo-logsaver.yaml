@@ -1,4 +1,4 @@
-name: Log output
+name: Log saver
 
 on:
   push:
@@ -9,9 +9,9 @@ on:
 
 env:
   USER: mrousu
-  IMAGE: logoutput
-  FOLDER: ./log/logoutput
-  IMAGE_HOLDER: LOG/OUTPUT
+  IMAGE: logsaver
+  FOLDER: ./log/logsaver
+  IMAGE_HOLDER: LOG/SAVER
 
 jobs:
   build-publish:

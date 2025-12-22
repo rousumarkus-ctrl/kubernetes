@@ -1,4 +1,4 @@
-name: Log output
+name: Pingpong
 
 on:
   push:
@@ -9,9 +9,9 @@ on:
 
 env:
   USER: mrousu
-  IMAGE: logoutput
-  FOLDER: ./log/logoutput
-  IMAGE_HOLDER: LOG/OUTPUT
+  IMAGE: pingpong
+  FOLDER: ./log/pingpong
+  IMAGE_HOLDER: LOG/PINGPONG
 
 jobs:
   build-publish:
