@@ -1,0 +1,76 @@
+name: Log
+
+on:
+  push:
+    branches:
+      - '**'
+    tags:
+      - '!**'
+
+env:
+  USER: mrousu
+
+jobs:
+  output:
+    name: Build, Push, Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Form the image name
+        run: echo "IMAGE_OUTPUT=$USER/logoutput:$GITHUB_SHA" >> $GITHUB_ENV
+
+      - name: Build and publish backend
+        working-directory: ./log/logoutput
+        run: |-
+          docker build --tag "$IMAGE_OUTPUT" .
+          docker push "$IMAGE_OUTPUT"
+
+  saver:
+    name: Build, Push, Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Form the image name
+        run: echo "IMAGE_SAVER=$USER/logsaver:$GITHUB_SHA" >> $GITHUB_ENV
+
+      - name: Build and publish backend
+        working-directory: ./log/logsaver
+        run: |-
+          docker build --tag "$IMAGE_SAVER" .
+          docker push "$IMAGE_SAVER"
+
+  set-kustomization:
+    name: Build, Push, Release
+    needs: [output, saver]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Kustomize
+        uses: imranismail/setup-kustomize@v2
+
+      - name: Use right image
+        working-directory: ./log
+        run: |
+          kustomize edit set image LOG/OUTPUT=$IMAGE_OUTPUT
+          kustomize edit set image LOG/SAVER=$IMAGE_SAVER
+
+      - name: commit kustomization.yaml to GitHub
+        uses: EndBug/add-and-commit@v9
+        with:
+          add: 'log/kustomization.yaml'
+          message: New version released ${{ github.sha }}
