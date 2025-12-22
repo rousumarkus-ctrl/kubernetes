@@ -105,7 +105,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.KUBERNETES_CONFIG_TOKEN}}
         run: |
-          echo ls
+          echo $ls
+          git config --unset-all http.https://github.com/.extraheader
           git config user.name 'rousumarkus-ctrl'
           git config user.email 'rousu.markus@gmail.com'
           git add 'the-project/todo-app/overlays/staging/kustomization.yaml'
