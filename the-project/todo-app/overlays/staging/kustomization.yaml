@@ -3,8 +3,4 @@ kind: Kustomization
 namespace: staging
 
 resources:
-- ./../../base
-images:
-- name: PROJECT/TODOAPP
-  newName: mrousu/todo-app
-  newTag: a938192f584b1f684c2ce4e137b2166bc5c0837f
+  - ./../../base

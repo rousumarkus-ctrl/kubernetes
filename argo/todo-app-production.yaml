@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/rousumarkus-ctrl/kubernetes
     path: the-project/todo-app/overlays/prod
-    targetRevision: HEAD
+    targetRevision: '*'
   destination:
     server: https://kubernetes.default.svc
     namespace: production
