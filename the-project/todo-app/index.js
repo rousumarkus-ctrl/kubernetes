@@ -6,7 +6,7 @@ const directory = path.join('/', 'usr', 'src', 'app', 'images');
 
 const PORT = process.env.APP_PORT;
 app.get('/version', async (request, response) => {
-  response.send(1);
+  response.send(2);
 });
 app.listen(PORT, () => {
   fs.promises.mkdir(directory, { recursive: true });

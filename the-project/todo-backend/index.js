@@ -8,7 +8,7 @@ const directory = path.join('/', 'usr', 'src', 'app', 'images');
 const createTable = async () => {
   try {
     const res = await pool.query(
-      `CREATE TABLE IF NOT EXISTS todos (id SERIAL PRIMARY KEY,title TEXT NOT NULL,done boolean default TRUE);`
+      `CREATE TABLE IF NOT EXISTS todos (id SERIAL PRIMARY KEY,title TEXT NOT NULL,done boolean default FALSE);`
     );
   } catch (e) {
     console.log('Query failed', e);
@@ -16,7 +16,7 @@ const createTable = async () => {
   }
 };
 app.get('/version', async (request, response) => {
-  response.send(1);
+  response.send(2);
 });
 
 const PORT = process.env.BACKEND_PORT;

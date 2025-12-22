@@ -10,6 +10,7 @@ const makeLink = async () => {
   });
   const result = await axios.post(process.env.TODO_URL, {
     title: `Read ${response.headers.location}`,
+    done: false,
   });
 };
 makeLink();
