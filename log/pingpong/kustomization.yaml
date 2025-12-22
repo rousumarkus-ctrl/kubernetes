@@ -4,7 +4,7 @@ kind: Kustomization
 images:
 - name: LOG/PINGPONG
   newName: mrousu/pingpong
-  newTag: e8e4e9bc5429d2b11963644ced0661830d85fb8f
+  newTag: 8fff25f84815ae42d4222f104715b1ae870fdb72
 resources:
 - manifests/postgres-secret.yaml
 - manifests/postgres.yaml
