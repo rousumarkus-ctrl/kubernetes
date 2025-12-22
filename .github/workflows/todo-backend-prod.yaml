@@ -11,7 +11,7 @@ env:
   GKE_CLUSTER: dwk-cluster
   GKE_ZONE: europe-north1-b
   REGISTRY: europe-north1-docker.pkg.dev
-  FOLDER: ./the-project/todo-app/overlays/prod
+  FOLDER: ./the-project/todo-backend/overlays/prod
 
 jobs:
   build-publish-deploy:
