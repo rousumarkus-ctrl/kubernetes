@@ -15,6 +15,9 @@ const createTable = async () => {
     setTimeout(createTable, 5000);
   }
 };
+app.get('/version', async (request, response) => {
+  response.send(1);
+});
 
 const PORT = process.env.BACKEND_PORT;
 app.listen(PORT, async () => {

@@ -21,7 +21,7 @@ spec:
             claimName: image-claim
       containers:
         - name: todo-app
-          image: PROJECT/IMAGE
+          image: PROJECT/TODOAPP
           resources:
             requests:
               memory: '50Mi'
