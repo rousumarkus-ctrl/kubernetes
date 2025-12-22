@@ -2,7 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: PROJECT/TODOBACKEND
-  newName: mrousu/todo-backend
+  newName: mrousu/pingpong
   newTag: c4af3babc681a38505bd9fbb483731a93a48af5c
 
 resources:
