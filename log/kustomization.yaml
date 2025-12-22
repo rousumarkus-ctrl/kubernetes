@@ -2,21 +2,22 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 images:
-  - name: LOG/OUTPUT
-    newName: mrousu/logoutput:8017a16d4ac2e61629cec1d3136442761a5b59f0
-  - name: LOG/SAVER
-    newName: mrousu/logsaver:5c6df27e5bbe8519d318e12eace65e0498d56021
-  - name: LOG/PINGPONG
-    newName: mrousu/pingpong:v6
+- name: LOG/OUTPUT
+  newName: mrousu/logoutput
+  newTag: d0a66e091bd916f939482fa9f46a81f00fa9d92f
+- name: LOG/PINGPONG
+  newName: mrousu/pingpong:v6
+- name: LOG/SAVER
+  newName: mrousu/logsaver:5c6df27e5bbe8519d318e12eace65e0498d56021
 resources:
-  - manifests/exercises.yaml
-  - manifests/config.yaml
-  - manifests/postgres-secret.yaml
-  - manifests/postgres.yaml
-  - manifests/deployment.yaml
-  - manifests/service.yaml
-  - manifests/analysis.yaml
-  - manifests/deployment-ping.yaml
-  - manifests/service-ping.yaml
-  - manifests/gateway.yaml
-  - manifests/route.yaml
+- manifests/exercises.yaml
+- manifests/config.yaml
+- manifests/postgres-secret.yaml
+- manifests/postgres.yaml
+- manifests/deployment.yaml
+- manifests/service.yaml
+- manifests/analysis.yaml
+- manifests/deployment-ping.yaml
+- manifests/service-ping.yaml
+- manifests/gateway.yaml
+- manifests/route.yaml
