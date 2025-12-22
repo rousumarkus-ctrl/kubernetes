@@ -8,7 +8,8 @@ images:
 - name: LOG/PINGPONG
   newName: mrousu/pingpong:v6
 - name: LOG/SAVER
-  newName: mrousu/logsaver:5c6df27e5bbe8519d318e12eace65e0498d56021
+  newName: mrousu/logsaver
+  newTag: 0848a53be4b5089368dbfe0bb0401937b64b7526
 resources:
 - manifests/exercises.yaml
 - manifests/config.yaml
