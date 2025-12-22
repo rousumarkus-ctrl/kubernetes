@@ -3,7 +3,7 @@ kind: Kustomization
 images:
 - name: PROJECT/TODOBACKEND
   newName: mrousu/todo-backend
-  newTag: 2ce0ffef3f1ca19dddd00a4adc8da04a2fd36c70
+  newTag: c4af3babc681a38505bd9fbb483731a93a48af5c
 
 resources:
 - manifests/namespace.yaml
