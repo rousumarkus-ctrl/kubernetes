@@ -51,6 +51,10 @@ app.get('/healthz', async (request, response) => {
   }
 });
 
+app.get('/version', async (request, response) => {
+  response.send(1);
+});
+
 const PORT = process.env.PONG_PORT;
 app.listen(PORT, async () => {
   console.log(`Server started in port ${PORT}`);
