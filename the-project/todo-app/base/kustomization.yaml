@@ -2,10 +2,14 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-  - namespace.yaml
-  - gateway.yaml
-  - route.yaml
-  - persistent-image-claim.yaml
-  - deployment.yaml
-  - config.yaml
-  - service.yaml
+- namespace.yaml
+- gateway.yaml
+- route.yaml
+- persistent-image-claim.yaml
+- deployment.yaml
+- config.yaml
+- service.yaml
+images:
+- name: PROJECT/TODOAPP
+  newName: mrousu/todo-app
+  newTag: d10018e370c1487274a59e28ab880e00dd97a5ef
