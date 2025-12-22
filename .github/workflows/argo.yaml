@@ -1,4 +1,4 @@
-name: Log
+name: Deploy apps
 
 on:
   push:
@@ -186,15 +186,15 @@ jobs:
         run: |
           kustomize edit set image LOG/PINGPONG=${{ needs.pingpong.outputs.image }}
 
-      - name: Use pingpong image
+      - name: Use todo-app image
         working-directory: ./the-project/todo-app
         run: |
           kustomize edit set image PROJECT/TODOAPP=${{ needs.todo-app.outputs.image }}
 
-      - name: Use pingpong image
+      - name: Use todo-backend image
         working-directory: ./the-project/todo-backend
         run: |
-          kustomize edit set image PROJECT/TODOBACKEND=${{ needs.pingpong.outputs.image }}
+          kustomize edit set image PROJECT/TODOBACKEND=${{ needs.todo-backend.outputs.image }}
 
       - name: commit kustomization.yaml to GitHub
         uses: EndBug/add-and-commit@v9
