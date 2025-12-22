@@ -2,14 +2,14 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 images:
-  - name: LOG/PINGPONG
-    newName: mrousu/pingpong
-    newTag: 1ed17f2dc18a069c9eb36ff3ecb8387c98f6b493
+- name: LOG/PINGPONG
+  newName: mrousu/pingpong
+  newTag: e8e4e9bc5429d2b11963644ced0661830d85fb8f
 resources:
-  - manifests/postgres-secret.yaml
-  - manifests/postgres.yaml
-  - manifests/analysis.yaml
-  - manifests/deployment-ping.yaml
-  - manifests/service-ping.yaml
-  - manifests/gateway.yaml
-  - manifests/route.yaml
+- manifests/postgres-secret.yaml
+- manifests/postgres.yaml
+- manifests/analysis.yaml
+- manifests/deployment-ping.yaml
+- manifests/service-ping.yaml
+- manifests/gateway.yaml
+- manifests/route.yaml
