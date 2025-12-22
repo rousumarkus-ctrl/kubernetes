@@ -3,9 +3,9 @@ name: Deploy production
 on:
   push:
     branches:
-      - '**'
-    tags:
       - '!**'
+    tags:
+      - '**'
 
 env:
   USER: mrousu
