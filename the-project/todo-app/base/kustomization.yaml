@@ -1,0 +1,14 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+images:
+  - name: PROJECT/TODOAPP
+    newName: mrousu/todo-app
+    newTag: b0cc0fc6acfb785f9b09d7ec320461462e43e76a
+resources:
+  - namespace.yaml
+  - gateway.yaml
+  - route.yaml
+  - persistent-image-claim.yaml
+  - deployment.yaml
+  - config.yaml
+  - service.yaml

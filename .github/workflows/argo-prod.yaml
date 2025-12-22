@@ -1,11 +1,11 @@
-name: Deploy staging
+name: Deploy production
 
 on:
   push:
     branches:
-      - '**'
-    tags:
       - '!**'
+    tags:
+      - '**'
 
 env:
   USER: mrousu
@@ -86,12 +86,12 @@ jobs:
         uses: imranismail/setup-kustomize@v2
 
       - name: Use todo-app image
-        working-directory: ./the-project/todo-app/overlays/staging
+        working-directory: ./the-project/todo-app/overlays/production
         run: |
           kustomize edit set image PROJECT/TODOAPP=${{ needs.todo-app.outputs.image }}
 
       - name: Use todo-backend image
-        working-directory: ./the-project/todo-backend/overlays/staging
+        working-directory: ./the-project/todo-backend/overlays/production
         run: |
           kustomize edit set image PROJECT/TODOBACKEND=${{ needs.todo-backend.outputs.image }}
 
@@ -99,6 +99,6 @@ jobs:
         uses: EndBug/add-and-commit@v9
         with:
           add: |
-            'the-project/todo-app/overlays/staging/kustomization.yaml'
-            'the-project/todo-backend/overlays/staging/kustomization.yaml'
+            'the-project/todo-app/overlays/production/kustomization.yaml'
+            'the-project/todo-backend/overlays/production/kustomization.yaml'
           message: New version released ${{ github.sha }}
