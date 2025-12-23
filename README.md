@@ -70,3 +70,4 @@
 ### Chapter 6
 
 - 5.2: done
+- [5.3](https://github.com/rousumarkus-ctrl/kubernetes/tree/5.3/log)

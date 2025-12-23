@@ -1,0 +1,45 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: wiki-server
+  labels:
+    app: wiki
+spec:
+  volumes:
+    - name: link
+      emptyDir: {}
+
+  initContainers:
+    - name: init-wiki
+      image: curlimages/curl:8.17.0
+      command:
+        - sh
+        - -c
+        - |
+          curl https://en.wikipedia.org/wiki/Kubernetes > /link/index.html
+      volumeMounts:
+        - name: link
+          mountPath: /link
+
+  containers:
+    - name: nginx
+      image: nginx:1.29.4-alpine-perl
+      ports:
+        - containerPort: 80
+      volumeMounts:
+        - name: link
+          mountPath: /usr/share/nginx/html
+
+    - name: wiki-side
+      image: curlimages/curl:8.17.0
+      command:
+        - sh
+        - -c
+        - |
+          while true; do
+            sleep $((RANDOM % 600 + 300))
+            curl -L https://en.wikipedia.org/wiki/Special:Random > /link/index.html
+          done
+      volumeMounts:
+        - name: link
+          mountPath: /link
