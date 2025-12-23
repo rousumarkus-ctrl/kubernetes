@@ -73,3 +73,4 @@
 - [5.3](https://github.com/rousumarkus-ctrl/kubernetes/tree/5.3/log)
 - [5.4](https://github.com/rousumarkus-ctrl/kubernetes/tree/5.4/sidecar)
 - 5.5: done
+- [5.6](https://github.com/rousumarkus-ctrl/kubernetes/tree/5.6/knative)
