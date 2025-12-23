@@ -1,0 +1,15 @@
+{
+  "name": "greeter",
+  "version": "1.0.0",
+  "description": "",
+  "license": "MIT",
+  "author": "Markus Rousu",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}

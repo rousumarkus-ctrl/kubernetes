@@ -19,6 +19,7 @@ app.get('/', async (request, response) => {
     }
   });
   const pongs = await axios.get(process.env.PONG_URL);
+  const greeting = await axios.get(process.env.GREETER_URL);
   /*   const pongs = await fs.promises.readFile(pongPath, (e) => {
     if (e) {
       console.log('error ', e);
@@ -34,7 +35,7 @@ app.get('/', async (request, response) => {
     .send(
       `file content: ${information}\nenv variable: MESSAGE=${
         process.env.MESSAGE
-      }\n${data.toString()}\nPing / Pongs: ${pongs.data.toString()}`
+      }\n${data.toString()}\nPing / Pongs: ${pongs.data.toString()}\ngreetings: ${greeting}`
     );
 });
 
