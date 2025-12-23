@@ -35,7 +35,7 @@ app.get('/', async (request, response) => {
     .send(
       `file content: ${information}\nenv variable: MESSAGE=${
         process.env.MESSAGE
-      }\n${data.toString()}\nPing / Pongs: ${pongs.data.toString()}\ngreetings: ${greeting}`
+      }\n${data.toString()}\nPing / Pongs: ${pongs.data.toString()}\ngreetings: ${greeting.data.toString()}`
     );
 });
 

@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: greeter-v1
+  namespace: exercises
   labels:
     app: greeter
     version: v1
@@ -19,7 +20,7 @@ spec:
     spec:
       containers:
         - name: greeter
-          image: your-dockerhub/greeter:v1
+          image: mrousu/greeter:v1
           env:
             - name: GREETER_PORT
               value: '3000'
@@ -28,6 +29,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: greeter-v2
+  namespace: exercises
   labels:
     app: greeter
     version: v2
@@ -45,7 +47,7 @@ spec:
     spec:
       containers:
         - name: greeter
-          image: your-dockerhub/greeter:v2
+          image: mrousu/greeter:v2
           env:
             - name: GREETER_PORT
               value: '3000'

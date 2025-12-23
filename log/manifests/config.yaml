@@ -6,6 +6,7 @@ metadata:
 data:
   MESSAGE: hello world
   PONG_URL: http://pingpong-svc:80/pings
+  GREETER_URL: http://greeter-svc
   LOG_PORT: '3000'
   information.txt: |
     this text is from file

@@ -66,3 +66,7 @@
 - [4.8](https://github.com/rousumarkus-ctrl/kubernetes/tree/4.8/the-project)
 - [4.9](https://github.com/rousumarkus-ctrl/kubernetes/tree/4.9/the-project)
 - [4.10](https://github.com/rousumarkus-ctrl/kubernetes/tree/4.10/the-project) | [config repository](https://github.com/rousumarkus-ctrl/kubernetes-config/tree/4.10)
+
+### Chapter 6
+
+- 5.2: done
